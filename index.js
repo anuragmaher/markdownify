@@ -1,6 +1,6 @@
 module.exports = app => {
   app.on('pull_request.opened', async context => {
-    const filesChanged = await context.github.pullRequests.getFiles(context.issue())
+    const filesChanged = await context.github.pullRequests.listFiles(context.issue())
     const results = filesChanged.data.filter(file => file.filename.includes('.md'))
     if (results && results.length > 0) {
       // make URLs
